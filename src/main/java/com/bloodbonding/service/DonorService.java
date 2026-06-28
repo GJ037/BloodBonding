@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bloodbonding.entity.User;
 import com.bloodbonding.entity.DonorProfile;
 import com.bloodbonding.repository.DonorProfileRepository;
 
@@ -26,4 +27,20 @@ public class DonorService {
     public Optional<DonorProfile> findById(Long id) {
         return donorProfileRepository.findById(id);
     }
+
+    public Optional<DonorProfile> getProfile(User user) {
+        return donorProfileRepository.findByUser(user);
+    }
+
+    public Optional<DonorProfile> getProfileByUserId(Long userId, AuthService authService) {
+
+        Optional<User> user = authService.getUserById(userId);
+
+        if (user.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return donorProfileRepository.findByUser(user.get());
+    }
+
 }

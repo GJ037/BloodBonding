@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Donate Blood</title>
+</head>
+
 <body>
 
-<h1>Donate Blood</h1>
+<h1>Blood Donation Details</h1>
 
-<p>Donate flow coming next.</p>
+<hr>
+
+<p><b>Name:</b> <span th:text="${profile.name}"></span></p>
+
+<p><b>Age:</b> <span th:text="${profile.age}"></span></p>
+
+<p><b>Gender:</b> <span th:text="${profile.gender}"></span></p>
+
+<p><b>Blood Group:</b> <span th:text="${profile.bloodGroup}"></span></p>
+
+<p><b>City:</b> <span th:text="${profile.city}"></span></p>
+
+<p><b>Disease History:</b> <span th:text="${profile.diseaseHistory}"></span></p>
+
+<p><b>Phone:</b> <span th:text="${profile.phone}"></span></p>
+
+<p><b>Email:</b> <span th:text="${profile.email}"></span></p>
+
+<hr>
+
+<button disabled>
+    Confirm Donation (Coming Next)
+</button>
+
+<br><br>
+
+<a href="/logout">
+    Logout
+</a>
 
 </body>
 </html>

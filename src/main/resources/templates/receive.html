@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Receive Blood</title>
+</head>
+
 <body>
 
 <h1>Receive Blood</h1>
 
-<p>Receive flow coming next.</p>
+<p>
+    <b>Your Blood Group:</b>
+    <span th:text="${bloodGroup}"></span>
+</p>
+
+<hr>
+
+<h2>Matching Donors</h2>
+
+<div th:if="${#lists.isEmpty(donors)}">
+    <p>No matching donors found.</p>
+</div>
+
+<div th:each="donor : ${donors}">
+
+    <p><b>Name:</b> <span th:text="${donor.name}"></span></p>
+
+    <p><b>Blood Group:</b> <span th:text="${donor.bloodGroup}"></span></p>
+
+    <p><b>City:</b> <span th:text="${donor.city}"></span></p>
+
+    <p><b>Phone:</b> <span th:text="${donor.phone}"></span></p>
+
+    <p><b>Email:</b> <span th:text="${donor.email}"></span></p>
+
+    <hr>
+
+</div>
+
+<a href="/logout">
+    Logout
+</a>
 
 </body>
 </html>
