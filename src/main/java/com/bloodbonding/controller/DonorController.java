@@ -1,5 +1,6 @@
 package com.bloodbonding.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,11 +69,27 @@ public class DonorController {
         List<DonorProfile> donors =
                 donorService.findByBloodGroup(bloodGroup);
 
-        donors.removeIf(donor ->
-                donor.getUser().getId().equals(userId));
+        List<DonorProfile> sameCityDonors = new ArrayList<>();
+        List<DonorProfile> otherCityDonors = new ArrayList<>();
+
+        String currentCity = currentProfile.get().getCity();
+
+        for (DonorProfile donor : donors) {
+
+            if (donor.getUser().getId().equals(userId)) {
+                continue;
+            }
+
+            if (donor.getCity().equalsIgnoreCase(currentCity)) {
+                sameCityDonors.add(donor);
+            } else {
+                otherCityDonors.add(donor);
+            }
+        }
 
         model.addAttribute("bloodGroup", bloodGroup);
-        model.addAttribute("donors", donors);
+        model.addAttribute("sameCityDonors", sameCityDonors);
+        model.addAttribute("otherCityDonors", otherCityDonors);
 
         return "receive";
     }

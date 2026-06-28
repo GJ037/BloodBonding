@@ -16,22 +16,33 @@
 
 <hr>
 
-<h2>Matching Donors</h2>
+<h2>📍 Donors in Your City</h2>
 
-<div th:if="${#lists.isEmpty(donors)}">
-    <p>No matching donors found.</p>
+<div th:if="${#lists.isEmpty(sameCityDonors)}">
+    <p>No donors available in your city.</p>
 </div>
 
-<div th:each="donor : ${donors}">
+<div th:each="donor : ${sameCityDonors}">
 
     <p><b>Name:</b> <span th:text="${donor.name}"></span></p>
-
-    <p><b>Blood Group:</b> <span th:text="${donor.bloodGroup}"></span></p>
-
-    <p><b>City:</b> <span th:text="${donor.city}"></span></p>
-
     <p><b>Phone:</b> <span th:text="${donor.phone}"></span></p>
+    <p><b>Email:</b> <span th:text="${donor.email}"></span></p>
 
+    <hr>
+
+</div>
+
+<h2>🌍 Donors in Other Cities</h2>
+
+<div th:if="${#lists.isEmpty(otherCityDonors)}">
+    <p>No donors available outside your city.</p>
+</div>
+
+<div th:each="donor : ${otherCityDonors}">
+
+    <p><b>Name:</b> <span th:text="${donor.name}"></span></p>
+    <p><b>City:</b> <span th:text="${donor.city}"></span></p>
+    <p><b>Phone:</b> <span th:text="${donor.phone}"></span></p>
     <p><b>Email:</b> <span th:text="${donor.email}"></span></p>
 
     <hr>
